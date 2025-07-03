@@ -1,0 +1,124 @@
+/* Grundlayout */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Courier New', monospace;
+  color: #00ff88;
+  background-color: #0d1117;
+}
+
+body {
+  display: grid;
+  grid-template-areas:
+    "header header"
+    "aside main"
+    "footer footer";
+  grid-template-columns: 250px 1fr;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+}
+
+/* Header */
+header {
+  grid-area: header;
+  background: #161b22;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #00ff88;
+}
+
+header h1 {
+  font-size: 1.5rem;
+}
+
+nav a {
+  margin-left: 1rem;
+  text-decoration: none;
+  color: #00ff88;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* Sidebar */
+aside {
+  grid-area: aside;
+  background: #0d1117;
+  border-right: 2px solid #00ff88;
+  padding: 1rem;
+}
+
+aside h2 {
+  margin-bottom: 1rem;
+}
+
+aside ul {
+  list-style: none;
+}
+
+aside li {
+  margin-bottom: 0.5rem;
+}
+
+aside a {
+  text-decoration: none;
+  color: #00ff88;
+}
+
+aside a:hover {
+  text-decoration: underline;
+}
+
+/* Main Content */
+main {
+  grid-area: main;
+  padding: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+/* Fenster-Design */
+.window {
+  background: #0d1117;
+  border: 1px solid #00ff88;
+  width: 100%;
+  max-width: 500px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px #00ff88;
+}
+
+.title-bar {
+  background: #161b22;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  border-bottom: 1px solid #00ff88;
+  border-radius: 10px 10px 0 0;
+}
+
+.content {
+  padding: 1rem;
+}
+
+/* Bild */
+.content img {
+  width: 100%;
+  height: auto;
+  border: 2px solid #00ff88;
+  margin-bottom: 1rem;
+}
+
+/* Footer */
+footer {
+  grid-area: footer;
+  background: #161b22;
+  text-align: center;
+  padding: 1rem;
+  border-top: 2px solid #00ff88;
+  font-size: 0.9rem;
+}
+
