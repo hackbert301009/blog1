@@ -1,22 +1,103 @@
-<a href="/blog1/kontakt.html">Kontakt</a>
-<a href="/blog1/ueber-mich.html">Über mich</a>
-<a href="/blog1/projekte.html">Projekte</a>
-<a href="/blog1/beitraege.html">Ältere Beiträge</a><nav>
-  <a href="index.html">Home</a>
-  <a href="ueber-mich.html">Über mich</a>
-  <a href="kontakt.html">Kontakt</a>
-  <a href="projekte.html">Projekte</a>
-  <a href="beitraege.html">Ältere Beiträge</a>
-</nav>
-<section class="window">
-  <div class="title-bar">🚀 Projekte</div>
-  <div class="content">
-    <ul>
-      <li><strong>Raspberry Pi Werbeschild</strong> – mit Python & Pisignage</li>
-      <li><strong>Arduino Roboterarm</strong> – mit Arduiono IDE</li>
-      <li><strong>Virtueller onlineshop</strong> – Modell für meine Projektarbeit</li>
-      <li><strong>Und noch sooo vieles mehhrrr, was ihr hier demnächst sehen werdet</li>
-    </ul>
-  </div>
-</section>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meine Projekte – Hackbert</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    body {
+      background-color: #0d1117;
+      color: #c9d1d9;
+      font-family: 'Courier New', Courier, monospace;
+      margin: 0;
+      padding: 20px;
+    }
 
+    header {
+      border-bottom: 2px solid #00ff88;
+      margin-bottom: 30px;
+    }
+
+    h1 {
+      color: #00ff88;
+    }
+
+    .projekt {
+      background-color: #161b22;
+      border-left: 5px solid #00ff88;
+      padding: 15px 20px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+    }
+
+    .projekt h2 {
+      margin: 0 0 10px;
+    }
+
+    .projekt a {
+      color: #58a6ff;
+      text-decoration: none;
+    }
+
+    .projekt a:hover {
+      text-decoration: underline;
+    }
+
+    .tags {
+      margin-top: 10px;
+    }
+
+    .tag {
+      background-color: #00ff88;
+      color: black;
+      padding: 3px 8px;
+      border-radius: 5px;
+      font-size: 0.8em;
+      margin-right: 5px;
+      display: inline-block;
+    }
+
+    .back-link {
+      margin-top: 30px;
+      display: inline-block;
+      color: #00ff88;
+      text-decoration: none;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🛠️ Projekte von Hackbert</h1>
+    <p>Hier findest du eine Übersicht meiner bisherigen technischen Projekte.</p>
+  </header>
+
+  <div class="projekt">
+    <h2><a href="https://github.com/hackbert301009/passwortmanager" target="_blank">🔐 Lokaler Passwortmanager</a></h2>
+    <p>Ein Passwortmanager mit Python und GUI, der lokal auf dem Rechner läuft – kein Cloud-Kram!</p>
+    <div class="tags">
+      <span class="tag">Python</span>
+      <span class="tag">Tkinter</span>
+      <span class="tag">Security</span>
+    </div>
+  </div>
+
+  <div class="projekt">
+    <h2><a href="https://github.com/hackbert301009/netzwerkmonitoring" target="_blank">📡 Netzwerkmonitoring mit Grafana</a></h2>
+    <p>Ein Dashboard zur Überwachung von Netzwerkdaten mithilfe von Prometheus & Grafana.</p>
+    <div class="tags">
+      <span class="tag">Linux</span>
+      <span class="tag">Grafana</span>
+      <span class="tag">Prometheus</span>
+    </div>
+  </div>
+
+  <!-- Weitere Projekte kannst du hier einfach ergänzen -->
+
+  <a href="index.html" class="back-link">← Zurück zur Startseite</a>
+</body>
+</html>
