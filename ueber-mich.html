@@ -4,38 +4,92 @@
 <a href="/blog1/projekte.html">Projekte</a>
 <a href="/blog1/beitraege.html">Ältere Beiträge</a>
 <html lang="de">
+<!DOCTYPE html>
+<html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <title>Über mich</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kontakt – Hackbert</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    body {
+      background-color: #0d1117;
+      color: #c9d1d9;
+      font-family: 'Courier New', Courier, monospace;
+      margin: 0;
+      padding: 20px;
+    }
+
+    header {
+      border-bottom: 2px solid #00ff88;
+      margin-bottom: 30px;
+    }
+
+    h1 {
+      color: #00ff88;
+    }
+
+    .kontaktbox {
+      background-color: #161b22;
+      border-left: 5px solid #00ff88;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .kontaktbox ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .kontaktbox li {
+      margin-bottom: 15px;
+    }
+
+    .kontaktbox a {
+      color: #58a6ff;
+      text-decoration: none;
+      font-size: 1.1em;
+    }
+
+    .kontaktbox a:hover {
+      text-decoration: underline;
+    }
+
+    .back-link {
+      margin-top: 30px;
+      display: inline-block;
+      color: #00ff88;
+      text-decoration: none;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
   <header>
-    <h1>💻 Mein Hacker Blog</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="ueber-mich.html">Über mich</a>
-      <a href="kontakt.html">Kontakt</a>
-    </nav>
+    <h1>📬 Kontakt</h1>
+    <p>Du möchtest mit mir in Kontakt treten? Hier findest du die passenden Links:</p>
   </header>
 
-  <main>
-    <section class="window">
-      <div class="title-bar">👨 Über mich</div>
-      <div class="content">
-        <p>Hallo,
-                 mein name ist Hackbert(Künstlername) und ich bin noch relativ jung u 18. ja, wer auch immer das hier liest, dem wünsche ich dabei viel spaß dabei.
-                 Viel mehr gibt es über mich nicht zu sagen, außer das ich den Blog hier hoffentlich aktuell und spannend halte. Bei allen möglichen Fragen, könnt ihr meine          Kontaktmöglichkeiten gerne in Anspruch nehmen.
-                 Mit gaaanzzzzz viel Lieeebe!!!
-                 euer Ersteller</p>
-        <img src="profil.jpg" alt="profil.jpg">
-      </div>
-    </section>
-  </main>
+  <div class="kontaktbox">
+    <ul>
+      <li>
+        📧 <a href="mailto:dein.email@beispiel.de">E-Mail: dein.email@beispiel.de</a>
+      </li>
+      <li>
+        💻 <a href="https://github.com/hackbert301009" target="_blank">GitHub: hackbert301009</a>
+      </li>
+      <li>
+        🎮 <a href="https://discord.com/users/DEINE-DISCORD-ID" target="_blank">Discord: Hackbert#1234</a>
+      </li>
+      <!-- Optional: Weitere Plattformen hier -->
+    </ul>
+  </div>
 
-  <footer>
-    <p>© 2025 Hacker Blog</p>
-  </footer>
+  <a href="index.html" class="back-link">← Zurück zur Startseite</a>
 </body>
 </html>
 
