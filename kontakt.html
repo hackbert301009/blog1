@@ -1,20 +1,88 @@
-<nav>
-  <a href="index.html">Home</a>
-  <a href="ueber-mich.html">Über mich</a>
-  <a href="kontakt.html">Kontakt</a>
-  <a href="projekte.html">Projekte</a>
-  <a href="beitraege.html">Ältere Beiträge</a>
-</nav>
-<a href="/blog1/kontakt.html">Kontakt</a>
-<a href="/blog1/ueber-mich.html">Über mich</a>
-<a href="/blog1/projekte.html">Projekte</a>
-<a href="/blog1/beitraege.html">Ältere Beiträge</a>
-<section class="window">
-  <div class="title-bar">📨 Kontakt</div>
-  <div class="content">
-    <p>Du kannst mich gerne bei Discord oder Snapchat anschreiben:
-        Discord = hackbert3010 Snapchat = albert-heide</p>
-    <p>Oder mich über GitHub kontaktieren: <a href="https://github.com/hackbert301009" target="_blank">github.com/hackbert301009</a></p>
-  </div>
-</section>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kontakt – Hackbert</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    body {
+      background-color: #0d1117;
+      color: #c9d1d9;
+      font-family: 'Courier New', Courier, monospace;
+      margin: 0;
+      padding: 20px;
+    }
 
+    header {
+      border-bottom: 2px solid #00ff88;
+      margin-bottom: 30px;
+    }
+
+    h1 {
+      color: #00ff88;
+    }
+
+    .kontaktbox {
+      background-color: #161b22;
+      border-left: 5px solid #00ff88;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .kontaktbox ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .kontaktbox li {
+      margin-bottom: 15px;
+    }
+
+    .kontaktbox a {
+      color: #58a6ff;
+      text-decoration: none;
+      font-size: 1.1em;
+    }
+
+    .kontaktbox a:hover {
+      text-decoration: underline;
+    }
+
+    .back-link {
+      margin-top: 30px;
+      display: inline-block;
+      color: #00ff88;
+      text-decoration: none;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>📬 Kontakt</h1>
+    <p>Du möchtest mit mir in Kontakt treten? Hier findest du die passenden Links:</p>
+  </header>
+
+  <div class="kontaktbox">
+    <ul>
+      <li>
+        📧 <a href="mailto:dein.email@beispiel.de">E-Mail: dein.email@beispiel.de</a>
+      </li>
+      <li>
+        💻 <a href="https://github.com/hackbert301009" target="_blank">GitHub: hackbert301009</a>
+      </li>
+      <li>
+        🎮 <a href="https://discord.com/users/DEINE-DISCORD-ID" target="_blank">Discord: Hackbert#1234</a>
+      </li>
+      <!-- Optional: Weitere Plattformen hier -->
+    </ul>
+  </div>
+
+  <a href="index.html" class="back-link">← Zurück zur Startseite</a>
+</body>
+</html>
