@@ -9,13 +9,89 @@
 <a href="/blog1/ueber-mich.html">Über mich</a>
 <a href="/blog1/projekte.html">Projekte</a>
 <a href="/blog1/beitraege.html">Ältere Beiträge</a>
-<section class="window">
-  <div class="title-bar">🗃️ Ältere Beiträge</div>
-  <div class="content">
-    <ul>
-      <li><a href="beitrag1.html">Was ich über Linux gelernt habe</a></li>
-      <li><a href="beitrag2.html">Wie man einen Bot programmiert</a></li>
-    </ul>
-  </div>
-</section>
+  <!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ältere Beiträge – Hackbert</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    body {
+      background-color: #0d1117;
+      color: #c9d1d9;
+      font-family: 'Courier New', Courier, monospace;
+      margin: 0;
+      padding: 20px;
+    }
 
+    header {
+      border-bottom: 2px solid #00ff88;
+      margin-bottom: 30px;
+    }
+
+    h1 {
+      color: #00ff88;
+    }
+
+    .beitragsliste {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .beitragsliste li {
+      margin-bottom: 15px;
+      background-color: #161b22;
+      padding: 15px;
+      border-left: 4px solid #00ff88;
+      border-radius: 8px;
+    }
+
+    .beitragsliste a {
+      color: #58a6ff;
+      font-weight: bold;
+      font-size: 1.1em;
+      text-decoration: none;
+    }
+
+    .beitragsliste a:hover {
+      text-decoration: underline;
+    }
+
+    .back-link {
+      margin-top: 30px;
+      display: inline-block;
+      color: #00ff88;
+      text-decoration: none;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>📚 Ältere Beiträge</h1>
+    <p>Hier findest du eine Übersicht aller bisher veröffentlichten Blogartikel.</p>
+  </header>
+
+  <ul class="beitragsliste">
+    <li>
+      <a href="posts/linux-tipps.html">🧠 Linux: 5 praktische Terminalbefehle</a><br>
+      <small>Veröffentlicht am 9. Juli 2025</small>
+    </li>
+    <li>
+      <a href="posts/ssh-einrichten.html">🔐 SSH-Server unter Linux einrichten</a><br>
+      <small>Veröffentlicht am 18. Juni 2025</small>
+    </li>
+    <li>
+      <a href="posts/netzwerk-monitoring.html">📊 Netzwerkmonitoring mit Grafana + Prometheus</a><br>
+      <small>Veröffentlicht am 4. Juli 2025</small>
+    </li>
+    <!-- Weitere Beiträge hier -->
+  </ul>
+
+  <a href="index.html" class="back-link">← Zurück zur Startseite</a>
+</body>
+</html>
