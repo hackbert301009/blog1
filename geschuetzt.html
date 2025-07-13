@@ -43,12 +43,15 @@
 <body>
 
 <script>
-  const passwort = prompt("🔐 Passwort eingeben:");
-  if (passwort !== "3010") {
-    alert("❌ Zugriff verweigert");
-    window.location.href = "/blog1/index.html";
-  }
+  window.onload = function() {
+    const passwort = prompt("🔐 Passwort eingeben:");
+    if (passwort !== "deinpasswort123") {
+      alert("❌ Zugriff verweigert");
+      window.location.href = "/blog1/index.html";
+    }
+  };
 </script>
+
 
 <div class="rahmen">
   <img src="profilbild.png" alt="Profilbild" />
