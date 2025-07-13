@@ -38,22 +38,16 @@
       margin-top: 10px;
       color: #55ff55;
     }
+
+    #geheimerInhalt {
+      display: none;
+    }
   </style>
 </head>
 <body>
 
-<script>
-  window.onload = function() {
-    const passwort = prompt("🔐 Passwort eingeben:");
-    if (passwort !== "deinpasswort123") {
-      alert("❌ Zugriff verweigert");
-      window.location.href = "/blog1/index.html";
-    }
-  };
-</script>
-
-
-<div class="rahmen">
+<!-- ✅ Der geheime Inhalt, wird erst bei richtigem Passwort angezeigt -->
+<div class="rahmen" id="geheimerInhalt">
   <img src="profilbild.png" alt="Profilbild" />
   <h2>Willkommen im geheimen Bereich, Hacker!</h2>
   <p>Nur wer das Passwort kennt, darf diesen Ort betreten.</p>
@@ -61,11 +55,23 @@
 </div>
 
 <script>
-  // Besucherzähler (lokal im Browser gespeichert)
-  let visits = localStorage.getItem("geheimeBesuche") || 0;
-  visits++;
-  localStorage.setItem("geheimeBesuche", visits);
-  document.getElementById("visitor-count").innerText = `🔢 Du hast diesen geheimen Bereich schon ${visits}x besucht.`;
+  window.onload = function() {
+    const passwort = prompt("🔐 Passwort eingeben:");
+    if (passwort === "301009") {
+      // Besucherzähler aktualisieren
+      let visits = localStorage.getItem("geheimeBesuche") || 0;
+      visits++;
+      localStorage.setItem("geheimeBesuche", visits);
+      document.getElementById("visitor-count").innerText =
+        `🔢 Du hast diesen geheimen Bereich schon ${visits}x besucht.`;
+
+      // Geheime Inhalte anzeigen
+      document.getElementById("geheimerInhalt").style.display = "block";
+    } else {
+      alert("❌ Zugriff verweigert");
+      window.location.href = "/blog1/index.html";
+    }
+  };
 </script>
 
 </body>
