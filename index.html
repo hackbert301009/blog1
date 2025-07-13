@@ -8,6 +8,42 @@
   <title>Hacker Blog</title>
   <link rel="stylesheet" href="style.css">
 </head>
+  <script>
+const canvas = document.getElementById('matrix');
+const ctx = canvas.getContext('2d');
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+const letters = '01'.split('');
+const fontSize = 14;
+let columns = Math.floor(canvas.width / fontSize);
+let drops = Array(columns).fill(1);
+
+function draw() {
+  ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = '#0f0';
+  ctx.font = fontSize + 'px monospace';
+
+  for (let i = 0; i < drops.length; i++) {
+    const text = letters[Math.floor(Math.random() * letters.length)];
+    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+    if (drops[i] * fontSize > canvas.height || Math.random() > 0.95) {
+      drops[i] = 0;
+    }
+    drops[i]++;
+  }
+}
+
+setInterval(draw, 33);
+</script>
+
 <body>
   <canvas id="matrix"></canvas>
 </body>
@@ -24,9 +60,8 @@
   <li><a href="/blog1/ueber-mich.html">Über mich</a></li>
 </ul>
 </aside>
-
-<a href="https://hits.seeyoufarm.com">
-  <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https://hackbert301009.github.io/blog1&count_bg=%2300ff00&title_bg=%23000000&icon=github.svg&icon_color=%23FFFFFF&title=Besucher&edge_flat=false"/>
+<a href="https://hackbert301009.github.io/blog1">
+  <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fhackbert301009.github.io%2Fblog1&count_bg=%2300ff00&title_bg=%23000000&icon=github.svg&icon_color=%23FFFFFF&title=Besucher&edge_flat=false"/>
 </a>
 
 
@@ -59,37 +94,6 @@
   </div>
        </section>
   </main>
-<script>
-const canvas = document.getElementById('matrix');
-const ctx = canvas.getContext('2d');
-
-canvas.height = window.innerHeight;
-canvas.width = window.innerWidth;
-
-const letters = '01'.split('');
-const fontSize = 14;
-const columns = canvas.width / fontSize;
-const drops = Array(Math.floor(columns)).fill(1);
-
-function draw() {
-  ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = '#0f0';
-  ctx.font = fontSize + 'px monospace';
-
-  for (let i = 0; i < drops.length; i++) {
-    const text = letters[Math.floor(Math.random() * letters.length)];
-    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-    if (drops[i] * fontSize > canvas.height || Math.random() > 0.95) {
-      drops[i] = 0;
-    }
-    drops[i]++;
-  }
-}
-
-setInterval(draw, 35);
-</script>
 
   <footer>
     <p>© 2025 Hacker Blog – Created by You</p>
