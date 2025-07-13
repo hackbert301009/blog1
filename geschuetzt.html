@@ -71,16 +71,40 @@
 
 <canvas id="matrix"></canvas>
 
-<div class="rahmen" id="geheimerInhalt">
-  <img src="profilbild.png" alt="Profilbild" />
-  <h2>Willkommen im geheimen Bereich, Hacker!</h2>
-  <p>Nur wer das Passwort kennt, darf diesen Ort betreten.</p>
-  <div class="visits" id="visitor-count"></div>
-  <button class="back-button" onclick="window.location.href='/blog1/index.html'">Zurück zur Startseite</button>
-</div>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Matrix Hintergrund</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: black;
+      overflow: hidden;
+    }
+
+    canvas#matrix {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    h1 {
+      color: #00ff00;
+      text-align: center;
+      padding-top: 50px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="matrix"></canvas>
+<h1>Willkommen im Hacker-Modus 😎</h1>
 
 <script>
-  // Matrix-Effekt
   const canvas = document.getElementById('matrix');
   const ctx = canvas.getContext('2d');
 
