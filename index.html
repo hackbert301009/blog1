@@ -11,8 +11,8 @@
  
 
 <body>
-  <div id="system-info" style="position: fixed; top: 10px; right: 10px; background: black; color: lime; font-family: monospace; padding: 8px; border: 1px solid lime; border-radius: 8px; z-index: 1000;"></div>
-
+<!-- ✅ SYSTEMINFO -->
+<div id="system-info" style="position: fixed; top: 10px; right: 10px; background: black; color: lime; font-family: monospace; padding: 8px; border: 1px solid lime; border-radius: 8px; z-index: 1000;"></div>
 <script>
   function updateSystemInfo() {
     const now = new Date();
@@ -27,38 +27,40 @@
   setInterval(updateSystemInfo, 1000);
   updateSystemInfo();
 </script>
-<div id="chatbot" style="position: fixed; bottom: 20px; right: 20px; background: black; color: lime; padding: 10px; font-family: monospace; border: 1px solid lime; border-radius: 10px; z-index: 1000;">
-  <div id="chatlog" style="max-height: 200px; overflow-y: auto;"></div>
-  <input type="text" id="chatinput" placeholder="Sag was..." style="width: 100%; background: black; color: lime; border: none;" />
-</div>
 
+<!-- ✅ CHATBOT LIGHT -->
+<div id="chatbot" style="position: fixed; bottom: 20px; right: 20px; background: black; color: lime; padding: 10px; font-family: monospace; border: 1px solid lime; border-radius: 10px; z-index: 1000;">
+  <div id="chatlog" style="max-height: 200px; overflow-y: auto; margin-bottom: 5px;"></div>
+  <input type="text" id="chatinput" placeholder="Sag was..." style="width: 100%; background: black; color: lime; border: none; outline: none;" />
+</div>
 <script>
   const chatlog = document.getElementById("chatlog");
   const input = document.getElementById("chatinput");
-
   input.addEventListener("keydown", function(e) {
     if (e.key === "Enter") {
       const userInput = input.value.toLowerCase();
       chatlog.innerHTML += `<div>👤 ${userInput}</div>`;
-
       let reply = "🤖 Ich verstehe das nicht.";
       if (userInput.includes("hallo")) reply = "Hey, willkommen auf der Hacker-Seite!";
       else if (userInput.includes("wer bist du")) reply = "Ich bin Chatbot Light!";
       else if (userInput.includes("witz")) reply = "Warum können Informatiker keine Schafe hüten? Weil sie nur NULLen und EINSen kennen.";
-
+      else if (userInput.includes("hilfe")) reply = "Frage mich nach 'Witz', 'Hallo' oder 'Wer bist du'";
       chatlog.innerHTML += `<div>${reply}</div>`;
       input.value = "";
       chatlog.scrollTop = chatlog.scrollHeight;
     }
   });
 </script>
-<audio id="typeSound" src="https://www.soundjay.com/button/beep-07.wav" preload="auto"></audio>
 
+<!-- ✅ SOUND-EFFEKT -->
+<audio id="typeSound" src="https://www.soundjay.com/button/beep-07.wav" preload="auto"></audio>
 <script>
   document.addEventListener("keydown", () => {
     document.getElementById("typeSound").play();
   });
 </script>
+
+
 
 </body>
   <header>
