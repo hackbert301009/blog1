@@ -8,43 +8,26 @@
   <title>Hacker Blog</title>
   <link rel="stylesheet" href="style.css">
 </head>
-  <script>
-const canvas = document.getElementById('matrix');
-const ctx = canvas.getContext('2d');
-
-function resizeCanvas() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-}
-resizeCanvas();
-window.addEventListener('resize', resizeCanvas);
-
-const letters = '01'.split('');
-const fontSize = 14;
-let columns = Math.floor(canvas.width / fontSize);
-let drops = Array(columns).fill(1);
-
-function draw() {
-  ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = '#0f0';
-  ctx.font = fontSize + 'px monospace';
-
-  for (let i = 0; i < drops.length; i++) {
-    const text = letters[Math.floor(Math.random() * letters.length)];
-    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-    if (drops[i] * fontSize > canvas.height || Math.random() > 0.95) {
-      drops[i] = 0;
-    }
-    drops[i]++;
-  }
-}
-
-setInterval(draw, 33);
-</script>
+ 
 
 <body>
+  <div id="system-info" style="position: fixed; top: 10px; right: 10px; background: black; color: lime; font-family: monospace; padding: 8px; border: 1px solid lime; border-radius: 8px; z-index: 1000;"></div>
+
+<script>
+  function updateSystemInfo() {
+    const now = new Date();
+    const os = navigator.platform;
+    const browser = navigator.userAgent.split(') ')[1];
+    document.getElementById("system-info").innerHTML = `
+      🕒 ${now.toLocaleTimeString()}<br>
+      🖥️ OS: ${os}<br>
+      🌐 Browser: ${browser}
+    `;
+  }
+  setInterval(updateSystemInfo, 1000);
+  updateSystemInfo();
+</script>
+
   <canvas id="matrix"></canvas>
 </body>
   <header>
