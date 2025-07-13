@@ -15,10 +15,12 @@
       font-family: 'Courier New', monospace;
     }
 
-    canvas {
+    canvas#matrix {
       position: fixed;
       top: 0;
       left: 0;
+      width: 100%;
+      height: 100%;
       z-index: -1;
     }
 
@@ -71,56 +73,32 @@
 
 <canvas id="matrix"></canvas>
 
-<!DOCTYPE html>
-<html lang="de">
-<head>
-  <meta charset="UTF-8" />
-  <title>Matrix Hintergrund</title>
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      background: black;
-      overflow: hidden;
-    }
-
-    canvas#matrix {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: -1;
-    }
-
-    h1 {
-      color: #00ff00;
-      text-align: center;
-      padding-top: 50px;
-      font-family: monospace;
-    }
-  </style>
-</head>
-<body>
-
-<canvas id="matrix"></canvas>
-<h1>Willkommen im Hacker-Modus 😎</h1>
+<div id="geheimerInhalt">
+  <div class="rahmen">
+    <img src="woche1.jpg" alt="Geheimes Bild">
+    <h2>🎉 Willkommen, Hacker!</h2>
+    <p>Nur echte Kenner kommen hierher. Schön, dass du da bist!</p>
+    <div id="visitor-count" class="visits"></div>
+    <button class="back-button" onclick="window.location.href='index.html'">Zurück zur Startseite</button>
+  </div>
+</div>
 
 <script>
+  // Matrix-Effekt
   const canvas = document.getElementById('matrix');
   const ctx = canvas.getContext('2d');
-
-  canvas.height = window.innerHeight;
   canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
 
   const katakana = "アカサタナハマヤラワ albert ist der beste";
   const chars = katakana.split("");
   const fontSize = 14;
-  const columns = canvas.width / fontSize;
-  const drops = Array(Math.floor(columns)).fill(1);
+  const columns = Math.floor(canvas.width / fontSize);
+  const drops = Array(columns).fill(1);
 
   function drawMatrix() {
     ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-
     ctx.fillStyle = "#0F0";
     ctx.font = fontSize + "px monospace";
 
@@ -141,14 +119,12 @@
   window.onload = function () {
     const passwort = prompt("🔐 Passwort eingeben:");
     if (passwort === "301009") {
-      // Besucherzähler
       let visits = localStorage.getItem("geheimeBesuche") || 0;
       visits++;
       localStorage.setItem("geheimeBesuche", visits);
       document.getElementById("visitor-count").innerText =
         `🔢 Du hast diesen geheimen Bereich schon ${visits}x besucht.`;
 
-      // Geheimer Inhalt sichtbar machen
       document.getElementById("geheimerInhalt").style.display = "block";
     } else {
       alert("❌ Zugriff verweigert");
@@ -159,3 +135,4 @@
 
 </body>
 </html>
+
