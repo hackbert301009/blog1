@@ -5,26 +5,33 @@
   <title>Geheimer Bereich</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    body {
-      background-color: black;
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      height: 100%;
+      background: black;
       color: #00ff00;
       font-family: 'Courier New', monospace;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
     }
 
     .rahmen {
-      background-color: #111;
+      background-color: rgba(0, 0, 0, 0.8);
       border: 2px solid #00ff00;
       border-radius: 15px;
       padding: 20px;
       text-align: center;
       max-width: 500px;
+      margin: 100px auto;
       box-shadow: 0 0 20px #00ff00aa;
+      z-index: 10;
     }
 
     .rahmen img {
@@ -42,30 +49,82 @@
     #geheimerInhalt {
       display: none;
     }
+
+    .back-button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #00ff00;
+      border: none;
+      border-radius: 10px;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .back-button:hover {
+      background-color: #55ff55;
+    }
   </style>
 </head>
 <body>
 
-<!-- ✅ Der geheime Inhalt, wird erst bei richtigem Passwort angezeigt -->
+<canvas id="matrix"></canvas>
+
 <div class="rahmen" id="geheimerInhalt">
   <img src="profilbild.png" alt="Profilbild" />
   <h2>Willkommen im geheimen Bereich, Hacker!</h2>
   <p>Nur wer das Passwort kennt, darf diesen Ort betreten.</p>
   <div class="visits" id="visitor-count"></div>
+  <button class="back-button" onclick="window.location.href='/blog1/index.html'">Zurück zur Startseite</button>
 </div>
 
 <script>
-  window.onload = function() {
+  // Matrix-Effekt
+  const canvas = document.getElementById('matrix');
+  const ctx = canvas.getContext('2d');
+
+  canvas.height = window.innerHeight;
+  canvas.width = window.innerWidth;
+
+  const katakana = "アカサタナハマヤラワ albert ist der beste";
+  const chars = katakana.split("");
+  const fontSize = 14;
+  const columns = canvas.width / fontSize;
+  const drops = Array(Math.floor(columns)).fill(1);
+
+  function drawMatrix() {
+    ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = "#0F0";
+    ctx.font = fontSize + "px monospace";
+
+    for (let i = 0; i < drops.length; i++) {
+      const text = chars[Math.floor(Math.random() * chars.length)];
+      ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+      if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+        drops[i] = 0;
+      }
+      drops[i]++;
+    }
+  }
+
+  setInterval(drawMatrix, 35);
+
+  // Passwortschutz & Inhalt
+  window.onload = function () {
     const passwort = prompt("🔐 Passwort eingeben:");
     if (passwort === "301009") {
-      // Besucherzähler aktualisieren
+      // Besucherzähler
       let visits = localStorage.getItem("geheimeBesuche") || 0;
       visits++;
       localStorage.setItem("geheimeBesuche", visits);
       document.getElementById("visitor-count").innerText =
         `🔢 Du hast diesen geheimen Bereich schon ${visits}x besucht.`;
 
-      // Geheime Inhalte anzeigen
+      // Geheimer Inhalt sichtbar machen
       document.getElementById("geheimerInhalt").style.display = "block";
     } else {
       alert("❌ Zugriff verweigert");
