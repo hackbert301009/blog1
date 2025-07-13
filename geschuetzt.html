@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Geschützter Bereich</title>
+</head>
+<body>
+<script>
+  const password = prompt("🔐 Passwort eingeben:");
+  if (password !== "deinpasswort123") {
+    alert("❌ Zugriff verweigert");
+    window.location.href = "/blog1/index.html";
+  }
+</script>
+
+<h1>Willkommen im geheimen Bereich!</h1>
+<p>Nur für Eingeweihte 😎</p>
+
+</body>
+</html>
