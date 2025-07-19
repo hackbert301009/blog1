@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: hackbot-api
+    runtime: python
+    buildCommand: ""
+    startCommand: python backend.py
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false
+
