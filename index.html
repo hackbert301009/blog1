@@ -29,29 +29,81 @@
 </script>
 
 <!-- ✅ CHATBOT LIGHT -->
-<div id="chatbot" style="position: fixed; bottom: 20px; right: 20px; background: black; color: lime; padding: 10px; font-family: monospace; border: 1px solid lime; border-radius: 10px; z-index: 1000;">
-  <div id="chatlog" style="max-height: 200px; overflow-y: auto; margin-bottom: 5px;"></div>
-  <input type="text" id="chatinput" placeholder="Sag was..." style="width: 100%; background: black; color: lime; border: none; outline: none;" />
-</div>
-<script>
-  const chatlog = document.getElementById("chatlog");
-  const input = document.getElementById("chatinput");
-  input.addEventListener("keydown", function(e) {
-    if (e.key === "Enter") {
-      const userInput = input.value.toLowerCase();
-      chatlog.innerHTML += `<div>👤 ${userInput}</div>`;
-      let reply = "🤖 Ich verstehe das nicht.";
-      if (userInput.includes("hallo")) reply = "Hey, willkommen auf der Hacker-Seite!";
-      else if (userInput.includes("wer bist du")) reply = "Ich bin Chatbot Light!";
-      else if (userInput.includes("witz")) reply = "Warum können Informatiker keine Schafe hüten? Weil sie nur NULLen und EINSen kennen.";
-      else if (userInput.includes("hilfe")) reply = "Frage mich nach 'Witz', 'Hallo' oder 'Wer bist du'";
-      else if (user Input.includes("kontakt")) reply = <nav> <ul> <li> <a href="index.html">Startseite</a> </li>
-      chatlog.innerHTML += `<div>${reply}</div>`;
-      input.value = "";
-      chatlog.scrollTop = chatlog.scrollHeight;
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8">
+  <title>HackBot mit Buttons</title>
+  <style>
+    body {
+      background: black;
+      color: lime;
+      font-family: monospace;
+      padding: 20px;
     }
-  });
-</script>
+    #chat {
+      height: 300px;
+      overflow-y: scroll;
+      border: 1px solid lime;
+      padding: 10px;
+      background: #000;
+    }
+    .button-row {
+      margin-top: 10px;
+    }
+    button {
+      background-color: #111;
+      color: lime;
+      border: 1px solid lime;
+      padding: 10px 20px;
+      margin: 5px;
+      cursor: pointer;
+      font-family: monospace;
+    }
+    button:hover {
+      background-color: lime;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+  <h2>🟢 HackBot</h2>
+  <div id="chat"></div>
+
+  <div class="button-row">
+    <button onclick="handleClick('Hallo')">👋 Hallo</button>
+    <button onclick="handleClick('Wie geht es dir?')">😊 Wie geht's?</button>
+    <button onclick="handleClick('Hilfe')">❓ Hilfe</button>
+    <button onclick="handleClick('Tschüss')">👋 Tschüss</button>
+  </div>
+
+  <script>
+    const chat = document.getElementById('chat');
+
+    function getBotReply(message) {
+      const msg = message.toLowerCase();
+      if (msg.includes("hallo")) return "Hallo! Wie kann ich dir helfen?";
+      if (msg.includes("wie geht")) return "Mir geht's gut, danke der Nachfrage!";
+      if (msg.includes("hilfe")) return "Du kannst auf 'Hallo', 'Wie geht's?', 'Tschüss' klicken.";
+      if (msg.includes("tschüss")) return "Tschüss! Bis bald!";
+      return "Das habe ich leider nicht verstanden.";
+    }
+
+    function speak(text) {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "de-DE";
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function handleClick(message) {
+      chat.innerHTML += `<div><b>Du:</b> ${message}</div>`;
+      const reply = getBotReply(message);
+      chat.innerHTML += `<div><b>Bot:</b> ${reply}</div>`;
+      chat.scrollTop = chat.scrollHeight;
+      speak(reply);
+    }
+  </script>
+
+
 
 <!-- ✅ SOUND-EFFEKT -->
 <audio id="typeSound" src="https://www.soundjay.com/button/beep-07.wav" preload="auto"></audio>
