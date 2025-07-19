@@ -29,79 +29,66 @@
 </script>
 
 <!-- ✅ CHATBOT LIGHT -->
-<!DOCTYPE html>
-<head>
-  <meta charset="UTF-8">
-  <title>HackBot mit Buttons</title>
-  <style>
-    body {
-      background: black;
-      color: lime;
-      font-family: monospace;
-      padding: 20px;
-    }
-    #chat {
-      height: 300px;
-      overflow-y: scroll;
-      border: 1px solid lime;
-      padding: 10px;
-      background: #000;
-    }
-    .button-row {
-      margin-top: 10px;
-    }
-    button {
-      background-color: #111;
-      color: lime;
-      border: 1px solid lime;
-      padding: 10px 20px;
-      margin: 5px;
-      cursor: pointer;
-      font-family: monospace;
-    }
-    button:hover {
-      background-color: lime;
-      color: black;
-    }
-  </style>
-</head>
-<body>
-  <h2>🟢 HackBot</h2>
-  <div id="chat"></div>
-
-  <div class="button-row">
-    <button onclick="handleClick('Hallo')">👋 Hallo</button>
-    <button onclick="handleClick('Wie geht es dir?')">😊 Wie geht's?</button>
-    <button onclick="handleClick('Hilfe')">❓ Hilfe</button>
-    <button onclick="handleClick('Tschüss')">👋 Tschüss</button>
+<div id="chatbot-container" style="position: fixed; bottom: 20px; right: 20px; background: #000; border: 2px solid lime; border-radius: 12px; padding: 10px; color: lime; font-family: monospace; width: 300px; z-index: 9999;">
+  <div id="chatbot-output" style="height: 150px; overflow-y: auto; margin-bottom: 10px;"></div>
+  <div id="chatbot-buttons">
+    <button onclick="sendMessage('Hallo!')" style="margin: 2px;">👋 Hallo</button>
+    <button onclick="sendMessage('Was kannst du?')" style="margin: 2px;">❓ Hilfe</button>
+    <button onclick="sendMessage('Wie geht es dir?')" style="margin: 2px;">😊 Wie geht's</button>
+    <button onclick="sendMessage('Erzähl mir etwas über KI.')" style="margin: 2px;">🤖 KI</button>
+    <button onclick="sendMessage('Tschüss!')" style="margin: 2px;">👋 Tschüss</button>
   </div>
+</div>
 
-  <script>
-    const chat = document.getElementById('chat');
+<script>
+  let username = "";
 
-    function getBotReply(message) {
-      const msg = message.toLowerCase();
-      if (msg.includes("hallo")) return "Hallo! Wie kann ich dir helfen?";
-      if (msg.includes("wie geht")) return "Mir geht's gut, danke der Nachfrage!";
-      if (msg.includes("hilfe")) return "Du kannst auf 'Hallo', 'Wie geht's?', 'Tschüss' klicken.";
-      if (msg.includes("tschüss")) return "Tschüss! Bis bald!";
-      return "Das habe ich leider nicht verstanden.";
-    }
+  // Frage nach dem Namen beim Laden
+  window.addEventListener("load", () => {
+    username = prompt("Wie heißt du?");
+    if (!username) username = "Freund";
+    const welcome = `Willkommen, ${username}! Wie kann ich dir helfen?`;
+    updateChat("Bot", welcome);
+    speak(welcome);
+  });
 
-    function speak(text) {
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = "de-DE";
-      window.speechSynthesis.speak(utterance);
-    }
+  // Chat aktualisieren
+  function updateChat(sender, text) {
+    const output = document.getElementById("chatbot-output");
+    output.innerHTML += `<div><b>${sender}:</b> ${text}</div>`;
+    output.scrollTop = output.scrollHeight;
+  }
 
-    function handleClick(message) {
-      chat.innerHTML += `<div><b>Du:</b> ${message}</div>`;
-      const reply = getBotReply(message);
-      chat.innerHTML += `<div><b>Bot:</b> ${reply}</div>`;
-      chat.scrollTop = chat.scrollHeight;
+  // Sprachausgabe
+  function speak(text) {
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = "de-DE";
+    window.speechSynthesis.speak(utter);
+  }
+
+  // Anfrage an GPT (Render-Backend)
+  async function sendMessage(msg) {
+    updateChat(username, msg);
+    try {
+      const response = await fetch("https://DEINE-RENDER-URL/chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ message: msg })
+      });
+
+      const data = await response.json();
+      const reply = data.reply;
+      updateChat("Bot", reply);
       speak(reply);
+    } catch (error) {
+      updateChat("Bot", "Fehler beim Kontakt mit dem Server.");
+      console.error(error);
     }
-  </script>
+  }
+</script>
+
 
 
 
