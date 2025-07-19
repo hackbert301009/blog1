@@ -6,7 +6,7 @@ import os
 app = Flask(__name__)
 CORS(app)  # ← Das erlaubt alle Domains
 
-openai.api_key = os.getenv("OPENAI_API_KEY")
+openai.api_key = os.getenv("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")
 
 @app.route('/chat', methods=['POST'])
 def chat():
