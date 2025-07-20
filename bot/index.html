@@ -2,20 +2,154 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <title>HackBot 🤖</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HackBot</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: black;
+      color: #00ff9f;
+      font-family: 'Share Tech Mono', monospace;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .terminal {
+      width: 90%;
+      max-width: 800px;
+      margin-top: 50px;
+      background-color: #111;
+      border: 2px solid #00ff9f;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #00ff9f;
+    }
+
+    .output {
+      min-height: 150px;
+      margin-bottom: 20px;
+      white-space: pre-line;
+    }
+
+    .button-group button {
+      margin: 5px;
+      background-color: #00ff9f;
+      border: none;
+      color: black;
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.2s;
+    }
+
+    .button-group button:hover {
+      background-color: #00cc7a;
+    }
+
+    .top-nav {
+      width: 100%;
+      background-color: #00ff9f;
+      color: black;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .top-nav a {
+      color: black;
+      text-decoration: none;
+      margin: 0 10px;
+      font-weight: bold;
+    }
+
+    audio {
+      display: none;
+    }
+  </style>
 </head>
 <body>
-  <div class="bot-window">
-    <h1>Willkommen bei HackBot</h1>
-    <div id="chatbox"></div>
-    <div class="button-area">
-      <button onclick="sendMessage('Was kannst du?')">Was kannst du?</button>
-      <button onclick="sendMessage('Erzähl mir einen Witz')">Erzähl einen Witz</button>
-      <button onclick="sendMessage('Gib mir einen Tipp')">Gib mir einen Tipp</button>
+  <div class="top-nav">
+    <a href="/blog1/index.html">🏠 Zur Startseite</a> | <strong>🤖 HackBot</strong>
+  </div>
+
+  <div class="terminal">
+    <div class="output" id="output">Willkommen! Gib bitte deinen Namen ein:</div>
+    <input type="text" id="nameInput" placeholder="Dein Name" style="padding: 8px; width: 100%; display: block;" />
+    <div class="button-group" style="display: none;" id="buttonGroup">
+      <button onclick="respond('Wie spät ist es?')">🕒 Uhrzeit</button>
+      <button onclick="respond('Wie geht es dir?')">🙂 Wie geht's?</button>
+      <button onclick="respond('Erzähl mir einen Witz')">😂 Witz</button>
+      <button onclick="respond('Was kannst du?')">💡 Fähigkeiten</button>
+      <button onclick="respond('Tschüss')">👋 Tschüss</button>
     </div>
   </div>
 
-  <script src="bot.js"></script>
+  <audio id="blip" src="https://freesound.org/data/previews/341/341695_6260500-lq.mp3"></audio>
+
+  <script>
+    let userName = localStorage.getItem("userName");
+    const output = document.getElementById("output");
+    const nameInput = document.getElementById("nameInput");
+    const buttonGroup = document.getElementById("buttonGroup");
+
+    const synth = window.speechSynthesis;
+
+    function speak(text) {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "de-DE";
+      synth.speak(utterance);
+    }
+
+    function respond(text) {
+      document.getElementById("blip").play();
+
+      let response = "";
+      switch (text) {
+        case "Wie spät ist es?":
+          const now = new Date();
+          response = `Es ist ${now.getHours()} Uhr und ${now.getMinutes()} Minuten.`;
+          break;
+        case "Wie geht es dir?":
+          response = "Mir geht es ausgezeichnet, danke der Nachfrage!";
+          break;
+        case "Erzähl mir einen Witz":
+          response = "Warum können Geister so schlecht lügen? Weil man durch sie hindurchsieht!";
+          break;
+        case "Was kannst du?":
+          response = "Ich kann dir antworten, dich unterhalten und bald noch mehr.";
+          break;
+        case "Tschüss":
+          response = `Auf Wiedersehen, ${userName}! Schön, dass du hier warst.`;
+          break;
+        default:
+          response = "Diese Funktion ist noch nicht programmiert.";
+      }
+
+      output.innerText = `👤 ${userName}: ${text}\n🤖 HackBot: ${response}`;
+      speak(response);
+    }
+
+    if (userName) {
+      output.innerText = `Hallo ${userName}, was möchtest du tun?`;
+      nameInput.style.display = "none";
+      buttonGroup.style.display = "block";
+      speak(`Willkommen zurück, ${userName}!`);
+    }
+
+    nameInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        userName = nameInput.value.trim();
+        if (userName !== "") {
+          localStorage.setItem("userName", userName);
+          nameInput.style.display = "none";
+          buttonGroup.style.display = "block";
+          output.innerText = `Hallo ${userName}, was möchtest du tun?`;
+          speak(`Hallo ${userName}, was möchtest du tun?`);
+        }
+      }
+    });
+  </script>
 </body>
 </html>
