@@ -35,6 +35,11 @@
     document.getElementById("typeSound").play();
   });
 </script>
+<script>
+  if (!localStorage.getItem("introPlayed")) {
+    window.location.href = "intro/index.html";
+  }
+</script>
 
 
 
