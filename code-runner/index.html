@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>💻 Code Runner</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="code-runner-container">
+    <h1>💻 Code Runner</h1>
+    <pre id="code-question"></pre>
+    <div id="choices"></div>
+    <p id="feedback"></p>
+    <button onclick="nextQuestion()">Nächste Frage</button>
+    <a href="../index.html" class="back">🏠 Zurück zur Startseite</a>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        code: `let x = 5;
+let y = 10;
+console.log(x + y);`,
+        correct: "15",
+        options: ["10", "15", "20"]
+      },
+      {
+        code: `function greet(name) {
+  return "Hallo " + name;
+}
+console.log(greet("Anna"));`,
+        correct: "Hallo Anna",
+        options: ["Hallo", "Hallo Anna", "Anna"]
+      },
+      {
+        code: `let arr = [1, 2, 3];
+arr.push(4);
+console.log(arr.length);`,
+        correct: "4",
+        options: ["3", "4", "5"]
+      }
+    ];
+
+    let current = 0;
+
+    function renderQuestion() {
+      document.getElementById("code-question").innerText = questions[current].code;
+      const choices = document.getElementById("choices");
+      choices.innerHTML = "";
+
+      questions[current].options.forEach(opt => {
+        const btn = document.createElement("button");
+        btn.innerText = opt;
+        btn.onclick = () => checkAnswer(opt);
+        choices.appendChild(btn);
+      });
+      document.getElementById("feedback").innerText = "";
+    }
+
+    function checkAnswer(answer) {
+      const isCorrect = answer === questions[current].correct;
+      document.getElementById("feedback").innerText = isCorrect ? "✅ Richtig!" : "❌ Falsch!";
+    }
+
+    function nextQuestion() {
+      current = (current + 1) % questions.length;
+      renderQuestion();
+    }
+
+    renderQuestion();
+  </script>
+</body>
+</html>
