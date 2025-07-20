@@ -1,0 +1,49 @@
+body {
+  background: #0f0f0f;
+  color: #00ff88;
+  font-family: "Courier New", monospace;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  padding: 1rem;
+  background: black;
+  text-align: center;
+  border-bottom: 2px solid #00ff88;
+}
+
+.back {
+  display: inline-block;
+  margin-top: 0.5rem;
+  color: #00ff88;
+  text-decoration: none;
+}
+
+main {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.tool {
+  background: #111;
+  border: 1px solid #00ff88;
+  padding: 1rem;
+  border-radius: 8px;
+  transition: transform 0.2s;
+}
+
+.tool:hover {
+  transform: scale(1.03);
+}
+
+.tool h2 {
+  margin-top: 0;
+  color: #00ff88;
+}
+
+.tool p {
+  font-size: 0.95rem;
+}
