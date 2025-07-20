@@ -113,9 +113,17 @@
   `;
 
   // Bot nur auf der Startseite anzeigen (Beispiel: prüfe URL-Pfad)
-  if (window.location.pathname === "/" || window.location.pathname === "/index.html") {
-    document.body.appendChild(botContainer);
-  }
+ const path = window.location.pathname.toLowerCase();
+if (
+  path.endsWith("/index.html") ||
+  path === "/" ||
+  path === "/blog1" ||
+  path === "/blog1/" ||
+  path === "/blog1/index.html"
+) {
+  document.body.appendChild(botContainer);
+}
+
 
   // === Soundeffekte hinzufügen ===
   const typeSound = new Audio("https://freesound.org/data/previews/66/66717_634166-lq.mp3");
@@ -238,7 +246,14 @@
   });
 
   // Start mit Namensfrage
-  if (window.location.pathname === "/" || window.location.pathname === "/index.html") {
-    askName();
-  }
+if (
+  path.endsWith("/index.html") ||
+  path === "/" ||
+  path === "/blog1" ||
+  path === "/blog1/" ||
+  path === "/blog1/index.html"
+) {
+  askName();
+}
+
 })();
