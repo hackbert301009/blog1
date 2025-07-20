@@ -3,7 +3,7 @@ services:
     name: blog1
     runtime: python3
     buildCommand: "pip install -r requirements.txt"
-    startCommand: python3 backend.py
+    startCommand: gunicorn backend:app --bind 0.0.0.0:$PORT
     envVars:
       - key: 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
         sync: false
