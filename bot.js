@@ -1,5 +1,4 @@
-(() => {
-  // === Styles dynamisch einfügen ===
+
   const style = document.createElement("style");
   style.textContent = `
     #bot-container {
