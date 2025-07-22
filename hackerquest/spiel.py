@@ -1,4 +1,3 @@
-
 from pyscript import display, Element
 from js import document
 
