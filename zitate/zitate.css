@@ -1,0 +1,77 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Georgia', serif;
+  background: linear-gradient(180deg, #0f0f0f, #1a1a1a);
+  color: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  flex-direction: column;
+  transition: background 1s ease;
+}
+
+.container {
+  max-width: 800px;
+  padding: 2rem;
+  text-align: center;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  color: #e0e0e0;
+}
+
+.subtitle {
+  color: #888;
+  margin-bottom: 2rem;
+}
+
+.quotes {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.quote {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-left: 4px solid #66ffcc;
+  padding: 1.5rem;
+  font-size: 1.25rem;
+  font-style: italic;
+  border-radius: 8px;
+  box-shadow: 0 0 10px #00000070;
+  transition: transform 0.3s ease;
+}
+
+.quote:hover {
+  transform: scale(1.02);
+}
+
+.quote span {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: #ccc;
+  font-style: normal;
+}
+
+.back-button {
+  display: inline-block;
+  margin-top: 3rem;
+  padding: 0.75rem 1.5rem;
+  background: #111;
+  color: #66ffcc;
+  border: 2px solid #66ffcc;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s, color 0.3s;
+}
+
+.back-button:hover {
+  background: #66ffcc;
+  color: #111;
+}
