@@ -6,23 +6,39 @@
   <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
   <script defer src="https://pyscript.net/latest/pyscript.js"></script>
   <style>
-    body { background:black; color:#0f0; font-family:monospace; }
-    #output button { /* Style Buttons */ }
+    body { background-color: #000; color: #0f0; font-family: monospace; padding: 1em; }
+    #output button {
+      background: transparent;
+      color: #0f0;
+      border: 1px solid #0f0;
+      margin: 0.2em;
+      padding: 0.5em;
+      cursor: pointer;
+    }
+    input {
+      background: transparent;
+      color: #0f0;
+      border: 1px solid #0f0;
+      margin-top: 0.5em;
+      padding: 0.4em;
+    }
   </style>
 </head>
 <body>
+
   <h1>💻 Hacker Quest</h1>
   <div id="output"></div>
 
-  <input id="name_input" style="display:none;" placeholder="Dein Name">
+  <input type="text" id="name_input" style="display:none;" placeholder="Dein Name">
   <button id="start_button" style="display:none;" pys-onClick="start_game">▶ Spiel starten</button>
 
-  <input id="password_input" style="display:none;" placeholder="Passwort">
+  <input type="text" id="password_input" style="display:none;" placeholder="Passwort">
   <button id="check_password_button" style="display:none;" pys-onClick="check_password">✅ Prüfen</button>
 
   <py-script src="spiel.py"></py-script>
   <py-script>
     welcome()
   </py-script>
+
 </body>
 </html>
