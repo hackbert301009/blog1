@@ -2,21 +2,27 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>Mein Arcade-Spiel</title>
+  <title>Mein Hacker-Game</title>
   <style>
     body {
-      background-color: #0f0f0f;
+      background-color: #0d0d0d;
       color: white;
       font-family: monospace;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding-top: 40px;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
     }
-    .gameboy-frame {
-      border: 8px solid #888;
+    h1 {
+      margin-bottom: 20px;
+      text-shadow: 0 0 10px #0ff;
+    }
+    .gameboy {
+      background: #cfcfcf;
+      border: 6px solid #888;
       border-radius: 20px;
-      background-color: #ccc;
       padding: 20px;
       box-shadow: 0 0 40px #0ff;
     }
@@ -26,16 +32,12 @@
       border: none;
       border-radius: 6px;
     }
-    h1 {
-      font-size: 1.5em;
-      margin-bottom: 20px;
-    }
   </style>
 </head>
 <body>
-  <h1>🎮 Der Heino-Simulator</h1>
-  <div class="gameboy-frame">
-    <iframe src="https://makecode.com/_38WeCY1vEaDe"></iframe>
+  <h1>🎮 Hacker Quest</h1>
+  <div class="gameboy">
+    <iframe src="https://arcade.makecode.com/---run?id=_epp4jy0mkVeP"></iframe>
   </div>
 </body>
 </html>
