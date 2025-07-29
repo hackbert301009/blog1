@@ -2,18 +2,18 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>🎮 Hacker Quest</title>
+  <title>🎤 Heini-Simulator</title>
   <style>
     body {
       margin: 0;
       background-color: #0d0d0d;
       font-family: monospace;
+      color: #00ffff;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       min-height: 100vh;
-      color: #00ffff;
     }
 
     h1 {
@@ -27,13 +27,14 @@
       border-radius: 20px;
       padding: 20px;
       box-shadow: 0 0 40px #0ff;
-      width: 360px;
+      width: 100%;
+      max-width: 360px;
     }
 
     .frame-container {
       position: relative;
-      height: 0;
-      padding-bottom: 117.6%;
+      height: calc(300px + 5em);
+      width: 100%;
       overflow: hidden;
       border-radius: 8px;
     }
@@ -49,14 +50,16 @@
   </style>
 </head>
 <body>
-  <h1>🎮 Viel Spaß!</h1>
+  <h1>🎤 Heinzelmann-Simulator</h1>
   <div class="gameboy">
     <div class="frame-container">
-      <iframe src="https://makecode.com/_1W3VMu1Dke2e"
-        allowfullscreen="allowfullscreen"
-        sandbox="allow-popups allow-forms allow-scripts allow-same-origin">
+      <iframe src="https://arcade.makecode.com/---codeembed#pub:_47h26Lhcz67t"
+              allowfullscreen="allowfullscreen"
+              sandbox="allow-scripts allow-same-origin"
+              frameborder="0">
       </iframe>
     </div>
   </div>
 </body>
 </html>
+
