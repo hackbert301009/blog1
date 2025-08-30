@@ -1,17 +1,17 @@
 [
-    {
-        "file": "zertifikat1.jpeg",
-        "title": "Python Grundlagen",
-        "description": "Erworben im Jahr 2024 bei OpenHPI"
-    },
-    {
-        "file": "zertifikat2.jpeg",
-        "title": "Linux Grundlagen",
-        "description": "Erworben im Jahr 2025 bei Udemy"
-    },
-    {
-        "file": "zertifikat3.jpg",
-        "title": "IT-Security",
-        "description": "Teilnahme am Workshop 2025"
-    }
+  {
+    "file": "zertifikat1.jpeg",
+    "title": "Python Grundlagen",
+    "description": "Erworben 2024 bei OpenHPI"
+  },
+  {
+    "file": "zertifikat2.jpeg",
+    "title": "Linux Grundlagen",
+    "description": "Erworben 2025 bei Udemy"
+  },
+  {
+    "file": "zertifikat3.jpg",
+    "title": "IT-Security",
+    "description": "Workshop 2025"
+  }
 ]
