@@ -1,66 +1,27 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Zertifikate – Albert Heruth</title>
-  <meta name="description" content="Übersicht über Zertifikate von Albert Heruth – Nachweise, Kurse und Qualifikationen." />
-  <link rel="stylesheet" href="style.css" />
-  <link rel="prefetch" href="metadata.json" as="fetch" crossorigin="anonymous" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>📜 Meine Zertifikate</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="cert-container" class="cert-grid"></div>
-<script src="script.js"></script>
-
-  <header class="site-header">
-    <nav class="top-nav">
-      <a href="../index.html" class="brand">🏠 Zurück</a>
-      <a class="active">🎓 Zertifikate</a>
-    </nav>
-    <div class="hero">
-      <h1>🎓 Zertifikate</h1>
-      <p>Nachweise meiner Qualifikationen und Weiterbildungen.</p>
-      <div class="controls">
-        <input id="search" type="search" placeholder="Suchen (Titel, Anbieter, Beschreibung) …" aria-label="Zertifikate durchsuchen" />
-        <select id="sort">
-          <option value="dateDesc">Sortierung: Neueste zuerst</option>
-          <option value="dateAsc">Älteste zuerst</option>
-          <option value="idDesc">Nummer absteigend</option>
-          <option value="idAsc">Nummer aufsteigend</option>
-        </select>
-      </div>
-    </div>
+  <header>
+    <h1>📜 Meine Zertifikate</h1>
+    <p>Eine Auswahl meiner erworbenen Zertifikate</p>
   </header>
 
   <main>
-    <section id="gallery" class="grid" aria-live="polite"></section>
-    <p id="empty" class="empty" hidden>Keine Treffer – Suchbegriff ändern?</p>
+    <div id="cert-container" class="cert-grid">
+      <!-- Zertifikate werden per Script geladen -->
+    </div>
   </main>
 
-  <footer class="site-footer">
-    <small>
-      Letzte Aktualisierung: <span id="last-modified"></span> •
-      <a href="https://hackbert301009.github.io/blog1" target="_blank" rel="noopener">Zur Startseite</a>
-    </small>
+  <footer>
+    <a href="../index.html" class="back">🏠 Zurück zur Startseite</a>
   </footer>
 
-  <!-- Modal / Lightbox -->
-  <div id="modal" class="modal" aria-hidden="true">
-    <button class="modal-close" id="modalClose" aria-label="Schließen">✕</button>
-    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-      <img id="modalImg" alt="" />
-      <div class="meta">
-        <h2 id="modalTitle"></h2>
-        <ul id="modalFacts"></ul>
-        <p id="modalDesc"></p>
-        <div class="modal-actions">
-          <a id="modalOpen" class="btn" target="_blank" rel="noopener">In neuem Tab öffnen</a>
-          <a id="modalDownload" class="btn" download>Bild herunterladen</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script src="script.js" defer></script>
+  <script src="script.js"></script>
 </body>
 </html>
