@@ -1,5 +1,5 @@
 /*  Zertifikate-Galerie
-    -------------------
+    -------------------.
     ✔ Bilder automatisch finden: /img/zertifikat{N}.{jpg|jpeg|png|webp|gif}
     ✔ Optional: Details aus metadata.json einblenden
     ✔ Suche + Sortierung + Modal
