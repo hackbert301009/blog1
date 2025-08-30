@@ -1,17 +1,17 @@
 [
   {
     "file": "zertifikat1.jpeg",
-    "title": "Python Grundlagen",
-    "description": "Erworben 2024 bei OpenHPI"
+    "title": "Mathematikgrundlagen für das Informatikstudium",
+    "description": "Erworben 2024 bei Udemy mit einer externen Prüfung"
   },
   {
     "file": "zertifikat2.jpeg",
-    "title": "Linux Grundlagen",
-    "description": "Erworben 2025 bei Udemy"
+    "title": "Cybersecurity-Kurs",
+    "description": "Erworben 2025 beim Google programming Hub"
   },
   {
     "file": "zertifikat3.jpg",
-    "title": "IT-Security",
-    "description": "Workshop 2025"
+    "title": "Kryptographie-Kurs",
+    "description": "Erworben 2025 ebenfalls beim Google programming Hub"
   }
 ]
