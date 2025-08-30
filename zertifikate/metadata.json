@@ -1,26 +1,17 @@
-{
-  "certs": [
+[
     {
-      "id": 1,
-      "title": "Python Grundlagen",
-      "issuer": "Coursera / University X",
-      "date": "2025-03-12",
-      "desc": "Einführung in Python, Datenstrukturen, Funktionen und Fehlerbehandlung.",
-      "link": "https://..."
+        "file": "zertifikat1.jpeg",
+        "title": "Python Grundlagen",
+        "description": "Erworben im Jahr 2024 bei OpenHPI"
     },
     {
-      "id": 2,
-      "title": "Netzwerkgrundlagen",
-      "issuer": "Cisco Networking Academy",
-      "date": "2025-04-28",
-      "desc": "IP, Subnetting, Routing-Basics, Sicherheit."
+        "file": "zertifikat2.jpeg",
+        "title": "Linux Grundlagen",
+        "description": "Erworben im Jahr 2025 bei Udemy"
     },
     {
-      "id": 3,
-      "title": "Linux Essentials",
-      "issuer": "LPI",
-      "date": "2025-06-10",
-      "desc": "Shell, Filesystem, Nutzerverwaltung, Prozesse."
+        "file": "zertifikat3.jpg",
+        "title": "IT-Security",
+        "description": "Teilnahme am Workshop 2025"
     }
-  ]
-}
+]
