@@ -1,90 +1,54 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kontakt – Hackbert</title>
-  <link rel="stylesheet" href="css/style.css" />
-  <style>
-    body {
-      background-color: #0d1117;
-      color: #c9d1d9;
-      font-family: 'Courier New', Courier, monospace;
-      margin: 0;
-      padding: 20px;
-    }
-
-    header {
-      border-bottom: 2px solid #00ff88;
-      margin-bottom: 30px;
-    }
-
-    h1 {
-      color: #00ff88;
-    }
-
-    .kontaktbox {
-      background-color: #161b22;
-      border-left: 5px solid #00ff88;
-      padding: 20px;
-      border-radius: 10px;
-      margin-bottom: 20px;
-    }
-
-    .kontaktbox ul {
-      list-style: none;
-      padding-left: 0;
-    }
-
-    .kontaktbox li {
-      margin-bottom: 15px;
-    }
-
-    .kontaktbox a {
-      color: #58a6ff;
-      text-decoration: none;
-      font-size: 1.1em;
-    }
-
-    .kontaktbox a:hover {
-      text-decoration: underline;
-    }
-
-    .back-link {
-      margin-top: 30px;
-      display: inline-block;
-      color: #00ff88;
-      text-decoration: none;
-    }
-
-    .back-link:hover {
-      text-decoration: underline;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kontakt</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  <header>
-    <h1>📬 Kontakt</h1>
-    <p>Du möchtest mit mir in Kontakt treten? Hier findest du die passenden Links:</p>
-  </header>
+<body class="bg-gray-900 text-gray-100 flex items-center justify-center min-h-screen p-6">
 
-  <div class="kontaktbox">
-    <ul>
-      <li>
-        📧 <a href="mailto:albert.heruth@gmail.com">albert.heruth@gmail.com</a>
-      </li>
-      <li>
-        💻 <a href="https://github.com/hackbert301009" target="_blank">GitHub: hackbert301009</a>
-      </li>
-      <li>
-        🎮 <a href="https://discord.com/users/hackbert3010" target="_blank">Discord: hackbert3010</a>
-      </li>
-      <li>
-        <a href="https://instagram.com/der_da.aus.heide" target="_blank">Instagram: der_da.aus.heide</a>
-      </li>
-    </ul>
+  <div class="w-full max-w-lg bg-gray-800 p-8 rounded-2xl shadow-lg">
+    <h1 class="text-3xl font-bold text-green-400 mb-6 text-center">Kontaktiere mich</h1>
+    
+    <form action="https://formspree.io/f/xeolbyyz" method="POST" class="space-y-6">
+      
+      <!-- Name -->
+      <div>
+        <label for="name" class="block text-sm font-medium text-gray-300">Name</label>
+        <input type="text" id="name" name="name" required
+          class="mt-1 block w-full px-4 py-2 rounded-lg bg-gray-700 border border-gray-600 text-gray-100 focus:ring-2 focus:ring-green-400 focus:outline-none">
+      </div>
+      
+      <!-- E-Mail -->
+      <div>
+        <label for="email" class="block text-sm font-medium text-gray-300">E-Mail</label>
+        <input type="email" id="email" name="email" required
+          class="mt-1 block w-full px-4 py-2 rounded-lg bg-gray-700 border border-gray-600 text-gray-100 focus:ring-2 focus:ring-green-400 focus:outline-none">
+      </div>
+      
+      <!-- Nachricht -->
+      <div>
+        <label for="message" class="block text-sm font-medium text-gray-300">Nachricht</label>
+        <textarea id="message" name="message" rows="5" required
+          class="mt-1 block w-full px-4 py-2 rounded-lg bg-gray-700 border border-gray-600 text-gray-100 focus:ring-2 focus:ring-green-400 focus:outline-none"></textarea>
+      </div>
+      
+      <!-- Button -->
+      <div class="text-center">
+        <button type="submit"
+          class="w-full bg-green-500 text-gray-900 font-bold py-2 px-4 rounded-lg hover:bg-green-400 transition transform hover:scale-105">
+          Nachricht senden
+        </button>
+      </div>
+    </form>
+    
+    <!-- Hinweis -->
+    <p class="text-center text-sm text-gray-400 mt-6">
+      Deine Daten werden nur zur Kontaktaufnahme genutzt.
+    </p>
   </div>
 
-  <a href="index.html" class="back-link">← Zurück zur Startseite</a>
 </body>
 </html>
+
