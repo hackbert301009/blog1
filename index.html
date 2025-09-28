@@ -73,41 +73,41 @@
 </ul>
 </aside>
 
-<!-- ✅ Monitoring Block -->
-<div class="bg-gray-800 text-green-400 p-4 rounded-lg shadow-md mt-6 max-w-md mx-auto font-mono">
-  <h2 class="text-xl font-bold mb-2">📊 Website-Statistik</h2>
+<!-- ✅ Monitoring Block (fixiert sichtbar) -->
+<div id="monitoring"
+     style="position: fixed; bottom: 10px; right: 10px; 
+            background: black; color: lime; font-family: monospace; 
+            padding: 10px; border: 1px solid lime; border-radius: 8px; 
+            z-index: 1000; min-width: 220px;">
+  <h2 style="margin:0 0 8px 0; font-size: 14px;">📊 Website-Statistik</h2>
   <p>Besucher heute: <span id="visitors-today">0</span></p>
-  <p>Besucher im Monat: <span id="visitors-month">0</span></p>
-  <p>Status: <span id="site-status" class="font-bold text-green-500">✅ Alles OK</span></p>
+  <p>Besucher gesamt: <span id="visitors-total">0</span></p>
+  <p>Status: <span id="site-status">✅ Läuft</span></p>
 </div>
 
 <script>
-// Besucher-API Keys (eindeutig wählen, damit dein Counter getrennt läuft)
-const todayKey = "blog1_today";
-const monthKey = "blog1_month";
+// CountAPI Namespace (muss eindeutig sein!)
+const namespace = "hackbert301009_blog1";
 
-// Funktion: Besucher hochzählen und anzeigen
+// Funktion: Besucher zählen
 function countVisit(key, elementId) {
-  fetch(`https://api.countapi.xyz/hit/hackbert301009.github.io/${key}`)
+  fetch(`https://api.countapi.xyz/hit/${namespace}/${key}`)
     .then(res => res.json())
     .then(data => {
       document.getElementById(elementId).innerText = data.value;
+    })
+    .catch(() => {
+      document.getElementById("site-status").innerText = "⚠️ Fehler";
     });
 }
 
 // Heute zählen
-countVisit(todayKey, "visitors-today");
+countVisit("today", "visitors-today");
 
-// Monat zählen
-countVisit(monthKey, "visitors-month");
-
-// Monitoring-Status (statisch)
-document.getElementById("site-status").innerText = "✅ Alles OK";
+// Gesamt zählen
+countVisit("total", "visitors-total");
 </script>
 
-<a href="https://hackbert301009.github.io/blog1">
-  <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fhackbert301009.github.io%2Fblog1&count_bg=%2300ff00&title_bg=%23000000&icon=github.svg&icon_color=%23FFFFFF&title=Besucher&edge_flat=false"/>
-</a>
 
 
   <main>
