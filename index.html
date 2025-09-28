@@ -158,37 +158,72 @@
       }
     }
 
-    /* ===== Fixierte Info-Blöcke ===== */
-    #system-info, #monitoring {
-      position: fixed;
-      background: black;
-      color: lime;
-      font-family: monospace;
-      padding: 8px;
-      border: 1px solid lime;
-      border-radius: 8px;
-      z-index: 1000;
-      font-size: 14px;
-    }
+/* ===== Fixierte Info-Blöcke ===== */
+#system-info, #monitoring {
+  position: fixed;
+  background: black;
+  color: lime;
+  font-family: monospace;
+  padding: 8px;
+  border: 1px solid lime;
+  border-radius: 8px;
+  z-index: 1000;
+  font-size: 14px;
+}
 
-    #system-info {
-      top: 10px;
-      right: 10px;
-    }
+#system-info {
+  top: 10px;
+  right: 10px;
+}
 
-    #monitoring {
-      bottom: 10px;
-      right: 10px;
-      min-width: 200px;
-    }
+#monitoring {
+  bottom: 10px;
+  right: 10px;
+  min-width: 200px;
+}
 
-    @media (max-width: 500px) {
-      #system-info, #monitoring {
-        font-size: 12px;
-        padding: 5px;
-        min-width: unset;
-      }
-    }
+/* ===== Burger Menü für Handy ===== */
+.menu-toggle {
+  display: none;
+  background: #0f0;
+  color: black;
+  font-size: 20px;
+  padding: 0.5rem 1rem;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  z-index: 2000; /* ⬅️ höher als system-info */
+  position: relative;
+}
+
+@media (max-width: 899px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  nav ul {
+    display: none;
+    flex-direction: column;
+  }
+
+  nav ul.show {
+    display: flex;
+  }
+}
+
+/* Auf sehr kleinen Bildschirmen (Handy) System-Info etwas nach unten schieben */
+@media (max-width: 500px) {
+  #system-info {
+    top: 50px; /* ⬅️ nicht mehr im Weg */
+  }
+  #system-info, #monitoring {
+    font-size: 12px;
+    padding: 5px;
+    min-width: unset;
+  }
+}
+
   </style>
 </head>
 <body>
