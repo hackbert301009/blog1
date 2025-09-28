@@ -3,141 +3,314 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hacker Blog</title>
+  <title>💻 Hacker Blog</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* ===== Grundlayout ===== */
+    body {
+      margin: 0;
+      font-family: monospace, sans-serif;
+      background: #000;
+      color: #0f0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      text-align: center;
+      padding: 1rem;
+      background: #111;
+      border-bottom: 2px solid lime;
+    }
+
+    main {
+      flex: 1;
+      padding: 1rem;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #111;
+      border-top: 2px solid lime;
+      margin-top: 2rem;
+    }
+
+    /* ===== Fenster-Style ===== */
+    .window {
+      background: #111;
+      border: 2px solid lime;
+      border-radius: 10px;
+      margin-bottom: 1.5rem;
+      overflow: hidden;
+    }
+
+    .title-bar {
+      background: #0f0;
+      color: black;
+      padding: 0.5rem;
+      font-weight: bold;
+    }
+
+    .content {
+      padding: 1rem;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 6px;
+    }
+
+    /* ===== Navigation ===== */
+    nav {
+      background: #111;
+      border-bottom: 2px solid lime;
+    }
+
+    nav h2 {
+      margin: 0;
+      padding: 0.5rem;
+      text-align: center;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    nav li {
+      margin: 0.5rem 1rem;
+    }
+
+    nav a {
+      color: #0f0;
+      text-decoration: none;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    /* ===== Desktop Sidebar ===== */
+    @media (min-width: 900px) {
+      body {
+        display: grid;
+        grid-template-columns: 220px 1fr;
+      }
+
+      nav {
+        border-bottom: none;
+        border-right: 2px solid lime;
+        height: 100vh;
+        position: sticky;
+        top: 0;
+        display: block;
+      }
+
+      nav h2 {
+        padding: 1rem;
+      }
+
+      nav ul {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0 1rem;
+      }
+
+      nav li {
+        margin: 0.5rem 0;
+      }
+    }
+
+    /* ===== Burger Menü für Handy ===== */
+    .menu-toggle {
+      display: none;
+      background: #0f0;
+      color: black;
+      font-size: 20px;
+      padding: 0.5rem 1rem;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      text-align: left;
+    }
+
+    @media (max-width: 899px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      nav ul {
+        display: none;
+        flex-direction: column;
+      }
+
+      nav ul.show {
+        display: flex;
+      }
+    }
+
+    /* ===== Fixierte Info-Blöcke ===== */
+    #system-info, #monitoring {
+      position: fixed;
+      background: black;
+      color: lime;
+      font-family: monospace;
+      padding: 8px;
+      border: 1px solid lime;
+      border-radius: 8px;
+      z-index: 1000;
+      font-size: 14px;
+    }
+
+    #system-info {
+      top: 10px;
+      right: 10px;
+    }
+
+    #monitoring {
+      bottom: 10px;
+      right: 10px;
+      min-width: 200px;
+    }
+
+    @media (max-width: 500px) {
+      #system-info, #monitoring {
+        font-size: 12px;
+        padding: 5px;
+        min-width: unset;
+      }
+    }
+  </style>
 </head>
- 
-
 <body>
-<!-- ✅ SYSTEMINFO -->
-<div id="system-info" style="position: fixed; top: 10px; right: 10px; background: black; color: lime; font-family: monospace; padding: 8px; border: 1px solid lime; border-radius: 8px; z-index: 1000;"></div>
-<script>
-  function updateSystemInfo() {
-    const now = new Date();
-    const os = navigator.platform;
-    const browser = navigator.userAgent.split(') ')[1];
-    document.getElementById("system-info").innerHTML = `
-      🕒 ${now.toLocaleTimeString()}<br>
-      🖥️ OS: ${os}<br>
-      🌐 Browser: ${browser}
-    `;
-  }
-  setInterval(updateSystemInfo, 1000);
-  updateSystemInfo();
-</script>
 
+  <!-- ✅ Systeminfo -->
+  <div id="system-info"></div>
+  <script>
+    function updateSystemInfo() {
+      const now = new Date();
+      const os = navigator.platform;
+      const browser = navigator.userAgent.split(') ')[1];
+      document.getElementById("system-info").innerHTML = `
+        🕒 ${now.toLocaleTimeString()}<br>
+        🖥️ OS: ${os}<br>
+        🌐 Browser: ${browser}
+      `;
+    }
+    setInterval(updateSystemInfo, 1000);
+    updateSystemInfo();
+  </script>
 
+  <!-- ✅ Monitoring -->
+  <div id="monitoring">
+    <h2 style="margin:0 0 5px 0; font-size: 14px;">📊 Statistik</h2>
+    <p>Besucher heute: <span id="visitors-today">0</span></p>
+    <p>Besucher gesamt: <span id="visitors-total">0</span></p>
+    <p>Status: <span id="site-status">✅ Läuft</span></p>
+  </div>
+  <script>
+    const namespace = "hackbert301009_blog1";
+    function countVisit(key, elementId) {
+      fetch(`https://api.countapi.xyz/hit/${namespace}/${key}`)
+        .then(res => res.json())
+        .then(data => {
+          document.getElementById(elementId).innerText = data.value;
+        })
+        .catch(() => {
+          document.getElementById("site-status").innerText = "⚠️ Fehler";
+        });
+    }
+    countVisit("today", "visitors-today");
+    countVisit("total", "visitors-total");
+  </script>
 
-<!-- ✅ SOUND-EFFEKT -->
-<audio id="typeSound" src="https://www.soundjay.com/button/beep-07.wav" preload="auto"></audio>
-<script>
-  document.addEventListener("keydown", () => {
-    document.getElementById("typeSound").play();
-  });
-</script>
-<script>
-  if (!localStorage.getItem("introPlayed")) {
-    window.location.href = "intro/index.html";
-  }
-</script>
+  <!-- ✅ Intro Redirect -->
+  <script>
+    if (!localStorage.getItem("introPlayed")) {
+      window.location.href = "intro/index.html";
+    }
+  </script>
 
-
-
-</body>
-  <header>
-  <h1>💻 Mein Hacker Blog</h1>
-</header>
-
-  <aside>
-  <h2>🔍 Navigation</h2>
-<ul>
-  <li><a href="/blog1/beitraege.html">Letzte Beiträge</a></li>
-  <li><a href="/blog1/projekte.html">Projekte</a></li>
-  <li><a href="/blog1/kontakt.html">Kontakt</a></li>
-  <li><a href="/blog1/ueber-mich.html">Über mich</a></li>
-  <li><a href="/blog1/index.hnhh">drück mich niemals!!!</a></li>
-  <li><a href="/blog1/geschuetzt.html">🕵️ Geheimer Bereich</a></li>
-  <li><a href="bot/index.html">🤖 Bot</a></li>
-  <li><a href="zertifikate/index.html">🎓 Zertifikate</a></li>
-  <li><a href="tagesplaner/index.html">🗓️ Tagesplaner</a></li>
-  <li><a href="snake/index.html">🐍 Hacker Snake</a></li>
-  <li><a href="code-runner/index.html">🧠 Code Runner</a></li>
-  <li><a href="tools/index.html">🛠️ Hacker-Tools</a></li>
-  <li><a href="tool/index.html">🛠️ Tool of the Day</a></li>
-  <li><a href="thanks/index.html">🙏 Thanksful For</a></li>
-  <li><a href="/blog1/zitate/index.html">📜 Zitate</a></li>
-  <li><a href="/blog1/spiel.html">▶ Heinzelmann-Simulator</a></li>
-  
-
-
-</ul>
-</aside>
-
-<!-- ✅ Monitoring Block (fixiert sichtbar) -->
-<div id="monitoring"
-     style="position: fixed; bottom: 10px; right: 10px; 
-            background: black; color: lime; font-family: monospace; 
-            padding: 10px; border: 1px solid lime; border-radius: 8px; 
-            z-index: 1000; min-width: 220px;">
-  <h2 style="margin:0 0 8px 0; font-size: 14px;">📊 Website-Statistik</h2>
-  <p>Besucher heute: <span id="visitors-today">0</span></p>
-  <p>Besucher gesamt: <span id="visitors-total">0</span></p>
-  <p>Status: <span id="site-status">✅ Läuft</span></p>
-</div>
-
-<script>
-// CountAPI Namespace (muss eindeutig sein!)
-const namespace = "hackbert301009_blog1";
-
-// Funktion: Besucher zählen
-function countVisit(key, elementId) {
-  fetch(`https://api.countapi.xyz/hit/${namespace}/${key}`)
-    .then(res => res.json())
-    .then(data => {
-      document.getElementById(elementId).innerText = data.value;
-    })
-    .catch(() => {
-      document.getElementById("site-status").innerText = "⚠️ Fehler";
+  <!-- ✅ Soundeffekt -->
+  <audio id="typeSound" src="https://www.soundjay.com/button/beep-07.wav" preload="auto"></audio>
+  <script>
+    document.addEventListener("keydown", () => {
+      document.getElementById("typeSound").play();
     });
-}
+  </script>
 
-// Heute zählen
-countVisit("today", "visitors-today");
+  <!-- ✅ Navigation -->
+  <nav>
+    <button class="menu-toggle" onclick="document.querySelector('nav ul').classList.toggle('show')">☰ Menü</button>
+    <h2>🔍 Navigation</h2>
+    <ul>
+      <li><a href="/blog1/beitraege.html">Letzte Beiträge</a></li>
+      <li><a href="/blog1/projekte.html">Projekte</a></li>
+      <li><a href="/blog1/kontakt.html">Kontakt</a></li>
+      <li><a href="/blog1/ueber-mich.html">Über mich</a></li>
+      <li><a href="/blog1/geschuetzt.html">🕵️ Geheimer Bereich</a></li>
+      <li><a href="bot/index.html">🤖 Bot</a></li>
+      <li><a href="zertifikate/index.html">🎓 Zertifikate</a></li>
+      <li><a href="tagesplaner/index.html">🗓️ Tagesplaner</a></li>
+      <li><a href="snake/index.html">🐍 Hacker Snake</a></li>
+      <li><a href="code-runner/index.html">🧠 Code Runner</a></li>
+      <li><a href="tools/index.html">🛠️ Hacker-Tools</a></li>
+      <li><a href="tool/index.html">🛠️ Tool of the Day</a></li>
+      <li><a href="thanks/index.html">🙏 Thanksful For</a></li>
+      <li><a href="/blog1/zitate/index.html">📜 Zitate</a></li>
+      <li><a href="/blog1/spiel.html">▶ Heinzelmann-Simulator</a></li>
+    </ul>
+  </nav>
 
-// Gesamt zählen
-countVisit("total", "visitors-total");
-</script>
+  <!-- ✅ Header -->
+  <header>
+    <h1>💻 Mein Hacker Blog</h1>
+  </header>
 
-
-
+  <!-- ✅ Main Content -->
   <main>
     <section class="window">
-      <div class="title-bar">📝 Blog des Monats(nur für Hacker, Loser, oder mich)</div>
+      <div class="title-bar">📝 Blog des Monats</div>
       <div class="content">
         <h4>Blog Monat August</h4>
-        <p> So, kommen wir jetzt zum August. Ich habe mit meiner Ausbildung begonnen und habe dort sehr viel gelernt. Das erste Gehalt wurde nartürlich direkt für nutten und koks ausgegeben hehe.
-          Mal gucken was noch kommt ich bin sehr gespannt und froh in dieser Firma arbeiten zu dürfen, da mir da viele neue möglichkeiten geboten werden, die das innere Traumberufherz mächtig zum Kochen bringen.
-          Ich wünsche euch im neuen Monat September alles erdenklich Gute und hoffe, dass ihr viele schöne Momente habt. Vielleicht beginnt ihr ja auch eure Ausbildung.
-       </p>
+        <p>
+          So, kommen wir jetzt zum August. Ich habe mit meiner Ausbildung begonnen und habe dort sehr viel gelernt. 
+          Das erste Gehalt wurde natürlich direkt für Spaß ausgegeben 😅.  
+          Mal gucken was noch kommt – ich bin sehr gespannt und froh, in dieser Firma arbeiten zu dürfen, 
+          da mir dort viele neue Möglichkeiten geboten werden.  
+          Ich wünsche euch im neuen Monat September alles Gute und hoffe, dass ihr viele schöne Momente habt.
+        </p>
         <h3>Macht euch eine schöööne Zeit!!!</h3>
       </div>
     </section>
+
     <section class="window">
       <div class="title-bar">📷 Bild des Monats</div>
       <div class="content">
-        <img src="woche2.jpg" alt="woche1.jpg"/>
+        <img src="woche2.jpg" alt="Bild der Woche">
         <p> Friedrich Nietzsche...</p>
       </div>
     </section>
-       <section class="window">
-  <div class="title-bar">📦 Mein Logo</div>
-  <div class="content">
-    <img src="wasserzeichen.hackbertpng" alt="wasserzeichen.hackbertpng" style="max-width: 40%; height: mid; border: 2px solid #00ff99; border-radius: 6px;">
-    <p>Ein weiteres cooles Bild...</p>
-  </div>
-       </section>
+
+    <section class="window">
+      <div class="title-bar">📦 Mein Logo</div>
+      <div class="content">
+        <img src="wasserzeichen.hackbertpng" alt="Mein Logo" style="max-width: 40%;">
+        <p>Ein weiteres cooles Bild...</p>
+      </div>
+    </section>
   </main>
 
+  <!-- ✅ Footer -->
   <footer>
     <p>© 2025 Hacker Blog – Created by You</p>
   </footer>
