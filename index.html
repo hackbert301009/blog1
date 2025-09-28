@@ -171,10 +171,52 @@
   font-size: 14px;
 }
 
+/* ===== Fixierte Info-Blöcke ===== */
 #system-info {
+  position: fixed;
   top: 10px;
   right: 10px;
+  background: black;
+  color: lime;
+  font-family: monospace;
+  padding: 8px;
+  border: 1px solid lime;
+  border-radius: 8px;
+  z-index: 1000;
+  font-size: 14px;
+  max-width: 220px;
 }
+
+/* ❌ Close-Button oben rechts */
+#close-info {
+  position: absolute;
+  top: 2px;
+  right: 5px;
+  background: none;
+  border: none;
+  color: red;
+  font-size: 16px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+#close-info:hover {
+  color: #ff5555;
+}
+
+#system-content {
+  margin-top: 18px; /* Platz unter dem X */
+}
+
+@media (max-width: 500px) {
+  #system-info {
+    font-size: 12px;
+    padding: 5px;
+    min-width: unset;
+    top: 50px; /* etwas nach unten auf kleinen Geräten */
+  }
+}
+
 
 #monitoring {
   bottom: 10px;
@@ -229,21 +271,32 @@
 <body>
 
   <!-- ✅ Systeminfo -->
-  <div id="system-info"></div>
-  <script>
-    function updateSystemInfo() {
-      const now = new Date();
-      const os = navigator.platform;
-      const browser = navigator.userAgent.split(') ')[1];
-      document.getElementById("system-info").innerHTML = `
-        🕒 ${now.toLocaleTimeString()}<br>
-        🖥️ OS: ${os}<br>
-        🌐 Browser: ${browser}
-      `;
-    }
-    setInterval(updateSystemInfo, 1000);
-    updateSystemInfo();
-  </script>
+  <!-- ✅ Systeminfo mit Close-Button -->
+<div id="system-info">
+  <button id="close-info" title="Schließen">✖</button>
+  <div id="system-content"></div>
+</div>
+
+<script>
+  function updateSystemInfo() {
+    const now = new Date();
+    const os = navigator.platform;
+    const browser = navigator.userAgent.split(') ')[1];
+    document.getElementById("system-content").innerHTML = `
+      🕒 ${now.toLocaleTimeString()}<br>
+      🖥️ OS: ${os}<br>
+      🌐 Browser: ${browser}
+    `;
+  }
+  setInterval(updateSystemInfo, 1000);
+  updateSystemInfo();
+
+  // ❌ Klick-Funktion: Info-Fenster ausblenden
+  document.getElementById("close-info").addEventListener("click", () => {
+    document.getElementById("system-info").style.display = "none";
+  });
+</script>
+
 
   <!-- ✅ Monitoring -->
   <div id="monitoring">
