@@ -7,187 +7,162 @@
   <link rel="stylesheet" href="style.css">
   <style>
     /* ===== Grundlayout ===== */
-    body {
-      margin: 0;
-      font-family: monospace, sans-serif;
-      background: #000;
-      color: #0f0;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
+  /* === TERMINAL-EFFEKT-STIL FÜR HACKER BLOG === */
 
-    header {
-      text-align: center;
-      padding: 1rem;
-      background: #111;
-      border-bottom: 2px solid lime;
-    }
-
-    main {
-      flex: 1;
-      padding: 1rem;
-      max-width: 900px;
-      margin: auto;
-    }
-
-    footer {
-      text-align: center;
-      padding: 1rem;
-      background: #111;
-      border-top: 2px solid lime;
-      margin-top: 2rem;
-    }
-
-    /* ===== Fenster-Style ===== */
-    .window {
-      background: #111;
-      border: 2px solid lime;
-      border-radius: 10px;
-      margin-bottom: 1.5rem;
-      overflow: hidden;
-    }
-
-    .title-bar {
-      background: #0f0;
-      color: black;
-      padding: 0.5rem;
-      font-weight: bold;
-    }
-
-    .content {
-      padding: 1rem;
-    }
-
-    img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 6px;
-    }
-
-    /* ===== Navigation ===== */
-    nav {
-      background: #111;
-      border-bottom: 2px solid lime;
-    }
-
-    nav h2 {
-      margin: 0;
-      padding: 0.5rem;
-      text-align: center;
-    }
-
-    nav ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    nav li {
-      margin: 0.5rem 1rem;
-    }
-
-    nav a {
-      color: #0f0;
-      text-decoration: none;
-    }
-
-    nav a:hover {
-      text-decoration: underline;
-    }
-
-    /* ===== Desktop Sidebar ===== */
-    @media (min-width: 900px) {
-      body {
-        display: grid;
-        grid-template-columns: 220px 1fr;
-      }
-
-      nav {
-        border-bottom: none;
-        border-right: 2px solid lime;
-        height: 100vh;
-        position: sticky;
-        top: 0;
-        display: block;
-      }
-
-      nav h2 {
-        padding: 1rem;
-      }
-
-      nav ul {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 0 1rem;
-      }
-
-      nav li {
-        margin: 0.5rem 0;
-      }
-    }
-
-    /* ===== Burger Menü für Handy ===== */
-    .menu-toggle {
-      display: none;
-      background: #0f0;
-      color: black;
-      font-size: 20px;
-      padding: 0.5rem 1rem;
-      border: none;
-      cursor: pointer;
-      width: 100%;
-      text-align: left;
-    }
-
-    @media (max-width: 899px) {
-      .menu-toggle {
-        display: block;
-      }
-
-      nav ul {
-        display: none;
-        flex-direction: column;
-      }
-
-      nav ul.show {
-        display: flex;
-      }
-    }
-
-/* ===== Fixierte Info-Blöcke ===== */
-#system-info, #monitoring {
-  position: fixed;
-  background: black;
-  color: lime;
-  font-family: monospace;
-  padding: 8px;
-  border: 1px solid lime;
-  border-radius: 8px;
-  z-index: 1000;
-  font-size: 14px;
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  height: 100%;
+  width: 100%;
+  font-family: monospace, sans-serif;
+  background-color: #000;
+  background-image: radial-gradient(#11581E, #041607);
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: rgba(128,255,128,0.85);
+  text-shadow: 0 0 8px #3f3, 0 0 2px rgba(255,255,255,0.8);
+  overflow-x: hidden;
+  position: relative;
 }
 
-/* ===== Fixierte Info-Blöcke ===== */
-#system-info {
+/* === Scanline Overlay === */
+body::before {
+  content: "";
+  pointer-events: none;
   position: fixed;
-  top: 10px;
-  right: 10px;
-  background: black;
+  width: 100%;
+  height: 100%;
+  top: 0; left: 0;
+  background: repeating-linear-gradient(
+    180deg,
+    transparent 0,
+    rgba(0,0,0,0.25) 50%,
+    transparent 100%
+  );
+  background-size: auto 4px;
+  z-index: 999;
+}
+
+body::after {
+  content: "";
+  pointer-events: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(
+    0deg,
+    transparent 0%,
+    rgba(32,128,32,0.15) 2%,
+    rgba(32,128,32,0.6) 3%,
+    rgba(32,128,32,0.15) 3%,
+    transparent 100%
+  );
+  background-repeat: no-repeat;
+  animation: scan 7.5s linear infinite;
+  z-index: 1000;
+}
+
+@keyframes scan {
+  0% { background-position: 0 -100vh; }
+  35%, 100% { background-position: 0 100vh; }
+}
+
+/* === Grundlayout bleibt === */
+header, footer, nav, main {
+  position: relative;
+  z-index: 2; /* Über Overlay */
+}
+
+/* === Navigation === */
+nav {
+  background: rgba(0, 0, 0, 0.85);
+  border-bottom: 2px solid lime;
+}
+nav h2 {
+  text-align: center;
+  padding: 0.5rem;
+  margin: 0;
+}
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+nav li {
+  margin: 0.5rem 1rem;
+}
+nav a {
+  color: #0f0;
+  text-decoration: none;
+}
+nav a:hover {
+  text-decoration: underline;
+  text-shadow: 0 0 10px #0f0;
+}
+
+/* === Header / Footer === */
+header, footer {
+  background: rgba(0,0,0,0.8);
+  border-top: 2px solid lime;
+  border-bottom: 2px solid lime;
+  text-align: center;
+  padding: 1rem;
+}
+
+/* === Fenster-Style === */
+.window {
+  background: rgba(0,0,0,0.85);
+  border: 2px solid lime;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 0 15px rgba(0,255,0,0.2);
+}
+
+.title-bar {
+  background: #0f0;
+  color: black;
+  padding: 0.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.content {
+  padding: 1rem;
+}
+
+/* === Bilder === */
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 0 15px rgba(0,255,0,0.3);
+}
+
+/* === Systeminfo & Monitoring === */
+#system-info, #monitoring {
+  position: fixed;
+  background: rgba(0,0,0,0.8);
   color: lime;
   font-family: monospace;
   padding: 8px;
   border: 1px solid lime;
   border-radius: 8px;
-  z-index: 1000;
+  z-index: 2001;
   font-size: 14px;
+  box-shadow: 0 0 12px rgba(0,255,0,0.3);
+}
+
+#system-info {
+  top: 10px;
+  right: 10px;
   max-width: 220px;
 }
 
-/* ❌ Close-Button oben rechts */
 #close-info {
   position: absolute;
   top: 2px;
@@ -199,24 +174,9 @@
   cursor: pointer;
   line-height: 1;
 }
+#close-info:hover { color: #ff5555; }
 
-#close-info:hover {
-  color: #ff5555;
-}
-
-#system-content {
-  margin-top: 18px; /* Platz unter dem X */
-}
-
-@media (max-width: 500px) {
-  #system-info {
-    font-size: 12px;
-    padding: 5px;
-    min-width: unset;
-    top: 50px; /* etwas nach unten auf kleinen Geräten */
-  }
-}
-
+#system-content { margin-top: 18px; }
 
 #monitoring {
   bottom: 10px;
@@ -224,47 +184,46 @@
   min-width: 200px;
 }
 
-/* ===== Burger Menü für Handy ===== */
-.menu-toggle {
-  display: none;
-  background: #0f0;
-  color: black;
-  font-size: 20px;
-  padding: 0.5rem 1rem;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  text-align: left;
-  z-index: 2000; /* ⬅️ höher als system-info */
-  position: relative;
+/* === Flicker Effekt (leichtes Bildschirmflackern) === */
+@keyframes flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+  20%, 24%, 55% { opacity: 0.8; }
+}
+body {
+  animation: flicker 3s infinite linear alternate;
 }
 
+/* === Responsive Anpassung === */
 @media (max-width: 899px) {
-  .menu-toggle {
-    display: block;
+  nav ul { flex-direction: column; display: none; }
+  nav ul.show { display: flex; }
+  .menu-toggle { display: block; }
+}
+@media (min-width: 900px) {
+  body {
+    display: grid;
+    grid-template-columns: 220px 1fr;
   }
-
-  nav ul {
-    display: none;
-    flex-direction: column;
-  }
-
-  nav ul.show {
-    display: flex;
+  nav {
+    border-right: 2px solid lime;
+    border-bottom: none;
+    height: 100vh;
+    position: sticky;
+    top: 0;
   }
 }
-
-/* Auf sehr kleinen Bildschirmen (Handy) System-Info etwas nach unten schieben */
 @media (max-width: 500px) {
   #system-info {
-    top: 50px; /* ⬅️ nicht mehr im Weg */
-  }
-  #system-info, #monitoring {
+    top: 50px;
     font-size: 12px;
     padding: 5px;
-    min-width: unset;
+  }
+  #monitoring {
+    font-size: 12px;
+    padding: 5px;
   }
 }
+
 
   </style>
 </head>
