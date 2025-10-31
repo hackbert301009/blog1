@@ -13,5 +13,15 @@
     "file": "zertifikat3.jpg",
     "title": "Kryptographie-Kurs",
     "description": "Erworben 2025 ebenfalls beim Google programming Hub"
+  },
+  {
+    "file": "zertifikat4.jpg",
+    "title": "Record of achievement",
+    "description": "Erworben 2025 am Hasso-Plattner-Institut, zum Thema Time Series Analysis/Big Data"
+  },
+  {
+    "file": "zertifikat5.jpg",
+    "title": "Graded assignment",
+    "description": "Erworben 2025 am Hasso-Plattner-Institut, zum Thema Time Series Analysis/Big Data"
   }
 ]
