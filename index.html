@@ -9,6 +9,8 @@
     /* ===== Grundlayout ===== */
   /* === TERMINAL-EFFEKT-STIL FÜR HACKER BLOG === */
 
+/* === TERMINAL-EFFEKT-STIL FÜR HACKER BLOG (RESPONSIVE FIX) === */
+
 html, body {
   margin: 0;
   padding: 0;
@@ -20,8 +22,8 @@ html, body {
   background-image: radial-gradient(#11581E, #041607);
   background-repeat: no-repeat;
   background-size: cover;
-  color: rgba(128,255,128,0.85);
-  text-shadow: 0 0 8px #3f3, 0 0 2px rgba(255,255,255,0.8);
+  color: rgba(128,255,128,0.9);
+  text-shadow: 0 0 8px #3f3, 0 0 2px rgba(255,255,255,0.6);
   overflow-x: hidden;
   position: relative;
 }
@@ -69,7 +71,7 @@ body::after {
   35%, 100% { background-position: 0 100vh; }
 }
 
-/* === Grundlayout bleibt === */
+/* === Grundlayout === */
 header, footer, nav, main {
   position: relative;
   z-index: 2; /* Über Overlay */
@@ -133,6 +135,7 @@ header, footer {
 
 .content {
   padding: 1rem;
+  line-height: 1.6;
 }
 
 /* === Bilder === */
@@ -184,21 +187,18 @@ img {
   min-width: 200px;
 }
 
-/* === Flicker Effekt (leichtes Bildschirmflackern) === */
+/* === Flicker Effekt === */
 @keyframes flicker {
   0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
-  20%, 24%, 55% { opacity: 0.8; }
+  20%, 24%, 55% { opacity: 0.9; }
 }
 body {
-  animation: flicker 3s infinite linear alternate;
+  animation: flicker 4s infinite linear alternate;
 }
 
-/* === Responsive Anpassung === */
-@media (max-width: 899px) {
-  nav ul { flex-direction: column; display: none; }
-  nav ul.show { display: flex; }
-  .menu-toggle { display: block; }
-}
+/* === RESPONSIVE DESIGN === */
+
+/* --- Desktop --- */
 @media (min-width: 900px) {
   body {
     display: grid;
@@ -212,18 +212,70 @@ body {
     top: 0;
   }
 }
+
+/* --- Mobile --- */
+@media (max-width: 899px) {
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+    display: none;
+  }
+
+  nav ul.show {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+    background: #0f0;
+    color: black;
+    font-size: 20px;
+    padding: 0.5rem 1rem;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    position: relative;
+    z-index: 2002;
+  }
+
+  /* Hintergrundeffekte etwas abschwächen auf kleinen Geräten */
+  body {
+    background-image: radial-gradient(#0b3d0e, #010);
+    text-shadow: 0 0 4px #2f2, 0 0 1px rgba(255,255,255,0.4);
+  }
+
+  .window {
+    margin: 1rem;
+  }
+}
+
+/* --- Sehr kleine Bildschirme --- */
 @media (max-width: 500px) {
   #system-info {
     top: 50px;
     font-size: 12px;
     padding: 5px;
+    width: 90%;
+    right: 5%;
   }
   #monitoring {
     font-size: 12px;
     padding: 5px;
+    width: 90%;
+    right: 5%;
+  }
+
+  .content {
+    font-size: 15px;
+    line-height: 1.5;
   }
 }
-
 
   </style>
 </head>
